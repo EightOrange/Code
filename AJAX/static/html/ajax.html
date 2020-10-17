@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3 id="resText">在输入框中尝试输入字母 a:</h3>
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://api.rp.smartmgxf.com/v1/panoramas",
+            data: {
+                fk_org_idddd: 125
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data.code === 200) {
+                    $('#resText').empty(); //清空resText里面的所有内容
+                    $('#resText').html(data.data[0].vr_url); //清空resText里面的所有内容
+                }else if(data.code===400){
+                     $('#resText').html(data.msg); //清空resText里面的所有内容
+                }
+
+
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>
